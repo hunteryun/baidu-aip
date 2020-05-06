@@ -39,12 +39,17 @@ class AipImageCensor extends AipBase{
     /**
      * @var string
      */
-    private $imageCensorUserDefinedUrl = 'https://aip.baidubce.com/rest/2.0/solution/v1/img_censor/user_defined';
+    private $imageCensorUserDefinedUrl = 'https://aip.baidubce.com/rest/2.0/solution/v1/img_censor/v2/user_defined';
 
     /**
      * @var string
      */
     private $antiSpamUrl = 'https://aip.baidubce.com/rest/2.0/antispam/v2/spam';
+
+    /**
+     * @var string
+     */
+    private $textCensorUserDefinedUrl = 'https://aip.baidubce.com/rest/2.0/solution/v1/text_censor/v2/user_defined';
 
     /**
      * @param  string $image 图像读取
@@ -118,18 +123,18 @@ class AipImageCensor extends AipBase{
         $isUrl = substr(trim($images[0]), 0, 4) === 'http';
         if(!$isUrl){
             $arr = array();
-
+            
             foreach($images as $image){
                 $arr[] = base64_encode($image);
             }
             $data['images'] = implode(',', $arr);
         }else{
             $urls = array();
-
+            
             foreach($images as $url){
                 $urls[] = urlencode($url);
             }
-
+            
             $data['imgUrls'] = implode(',', $urls);
         }
 
@@ -143,7 +148,7 @@ class AipImageCensor extends AipBase{
     public function imageCensorComb($image, $scenes='antiporn', $options=array()){
 
         $scenes = !is_array($scenes) ? explode(',', $scenes) : $scenes;
-
+        
         $data = array(
             'scenes' => $scenes,
         );
@@ -167,7 +172,7 @@ class AipImageCensor extends AipBase{
      * @return array
      */
     public function imageCensorUserDefined($image){
-
+        
         $data = array();
 
         $isUrl = substr(trim($image), 0, 4) === 'http';
@@ -177,7 +182,20 @@ class AipImageCensor extends AipBase{
             $data['imgUrl'] = $image;
         }
 
-        return $this->request($this->imageCensorUserDefinedUrl, $data);
+        return $this->request($this->imageCensorUserDefinedUrl, $data);     
+    }
+
+    /**
+     * @param  string $text
+     * @return array
+     */
+    public function textCensorUserDefined($text){
+        
+        $data = array();
+
+        $data['text'] = $text;
+
+        return $this->request($this->textCensorUserDefinedUrl, $data);     
     }
 
     /**

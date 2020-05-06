@@ -41,7 +41,7 @@ class AipKg extends AipBase {
      */
     private $taskStatusUrl = 'https://aip.baidubce.com/rest/2.0/kg/v1/pie/task_status';
 
-
+    
 
     /**
      * 创建任务接口
@@ -59,7 +59,7 @@ class AipKg extends AipBase {
     public function createTask($name, $templateContent, $inputMappingFile, $outputFile, $urlPattern, $options=array()){
 
         $data = array();
-
+        
         $data['name'] = $name;
         $data['template_content'] = $templateContent;
         $data['input_mapping_file'] = $inputMappingFile;
@@ -87,7 +87,7 @@ class AipKg extends AipBase {
     public function updateTask($id, $options=array()){
 
         $data = array();
-
+        
         $data['id'] = $id;
 
         $data = array_merge($data, $options);
@@ -106,7 +106,7 @@ class AipKg extends AipBase {
     public function getTaskInfo($id, $options=array()){
 
         $data = array();
-
+        
         $data['id'] = $id;
 
         $data = array_merge($data, $options);
@@ -129,7 +129,7 @@ class AipKg extends AipBase {
     public function getUserTasks($options=array()){
 
         $data = array();
-
+        
 
         $data = array_merge($data, $options);
 
@@ -147,7 +147,7 @@ class AipKg extends AipBase {
     public function startTask($id, $options=array()){
 
         $data = array();
-
+        
         $data['id'] = $id;
 
         $data = array_merge($data, $options);
@@ -166,7 +166,7 @@ class AipKg extends AipBase {
     public function getTaskStatus($id, $options=array()){
 
         $data = array();
-
+        
         $data['id'] = $id;
 
         $data = array_merge($data, $options);

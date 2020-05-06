@@ -84,6 +84,18 @@ class AipOcr extends AipBase {
     private $receiptUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/receipt';
 
     /**
+     * 火车票识别 train_ticket api url
+     * @var string
+     */
+    private $trainTicketUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/train_ticket';
+
+    /**
+     * 出租车票识别 taxi_receipt api url
+     * @var string
+     */
+    private $taxiReceiptUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/taxi_receipt';
+
+    /**
      * 表格文字识别同步接口 form api url
      * @var string
      */
@@ -100,6 +112,72 @@ class AipOcr extends AipBase {
      * @var string
      */
     private $tableResultGetUrl = 'https://aip.baidubce.com/rest/2.0/solution/v1/form_ocr/get_request_result';
+
+    /**
+     * VIN码识别 vin_code api url
+     * @var string
+     */
+    private $vinCodeUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/vin_code';
+
+    /**
+     * 定额发票识别 quota_invoice api url
+     * @var string
+     */
+    private $quotaInvoiceUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/quota_invoice';
+
+    /**
+     * 户口本识别 household_register api url
+     * @var string
+     */
+    private $householdRegisterUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/household_register';
+
+    /**
+     * 港澳通行证识别 HK_Macau_exitentrypermit api url
+     * @var string
+     */
+    private $HKMacauExitentrypermitUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/HK_Macau_exitentrypermit';
+
+    /**
+     * 台湾通行证识别 taiwan_exitentrypermit api url
+     * @var string
+     */
+    private $taiwanExitentrypermitUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/taiwan_exitentrypermit';
+
+    /**
+     * 出生医学证明识别 birth_certificate api url
+     * @var string
+     */
+    private $birthCertificateUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/birth_certificate';
+
+    /**
+     * 机动车销售发票识别 vehicle_invoice api url
+     * @var string
+     */
+    private $vehicleInvoiceUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/vehicle_invoice';
+
+    /**
+     * 车辆合格证识别 vehicle_certificate api url
+     * @var string
+     */
+    private $vehicleCertificateUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/vehicle_certificate';
+
+    /**
+     * 税务局通用机打发票识别 invoice api url
+     * @var string
+     */
+    private $invoiceUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/invoice';
+
+    /**
+     * 行程单识别 air_ticket api url
+     * @var string
+     */
+    private $airTicketUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/air_ticket';
+
+    /**
+     * 保单识别 insurance_documents api url
+     * @var string
+     */
+    private $insuranceDocumentsUrl = 'https://aip.baidubce.com/rest/2.0/ocr/v1/insurance_documents';
 
     /**
      * 增值税发票识别 vat_invoice api url
@@ -149,7 +227,7 @@ class AipOcr extends AipBase {
      */
     private $customUrl = 'https://aip.baidubce.com/rest/2.0/solution/v1/iocr/recognise';
 
-
+    
 
     /**
      * 通用文字识别接口
@@ -166,7 +244,7 @@ class AipOcr extends AipBase {
     public function basicGeneral($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -189,7 +267,7 @@ class AipOcr extends AipBase {
     public function basicGeneralUrl($url, $options=array()){
 
         $data = array();
-
+        
         $data['url'] = $url;
 
         $data = array_merge($data, $options);
@@ -210,7 +288,7 @@ class AipOcr extends AipBase {
     public function basicAccurate($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -235,7 +313,7 @@ class AipOcr extends AipBase {
     public function general($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -260,7 +338,7 @@ class AipOcr extends AipBase {
     public function generalUrl($url, $options=array()){
 
         $data = array();
-
+        
         $data['url'] = $url;
 
         $data = array_merge($data, $options);
@@ -283,7 +361,7 @@ class AipOcr extends AipBase {
     public function accurate($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -306,7 +384,7 @@ class AipOcr extends AipBase {
     public function enhancedGeneral($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -329,7 +407,7 @@ class AipOcr extends AipBase {
     public function enhancedGeneralUrl($url, $options=array()){
 
         $data = array();
-
+        
         $data['url'] = $url;
 
         $data = array_merge($data, $options);
@@ -350,7 +428,7 @@ class AipOcr extends AipBase {
     public function webImage($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -371,7 +449,7 @@ class AipOcr extends AipBase {
     public function webImageUrl($url, $options=array()){
 
         $data = array();
-
+        
         $data['url'] = $url;
 
         $data = array_merge($data, $options);
@@ -393,7 +471,7 @@ class AipOcr extends AipBase {
     public function idcard($image, $idCardSide, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
         $data['id_card_side'] = $idCardSide;
 
@@ -413,7 +491,7 @@ class AipOcr extends AipBase {
     public function bankcard($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -433,7 +511,7 @@ class AipOcr extends AipBase {
     public function drivingLicense($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -454,7 +532,7 @@ class AipOcr extends AipBase {
     public function vehicleLicense($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -474,7 +552,7 @@ class AipOcr extends AipBase {
     public function licensePlate($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -493,7 +571,7 @@ class AipOcr extends AipBase {
     public function businessLicense($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -516,12 +594,50 @@ class AipOcr extends AipBase {
     public function receipt($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
 
         return $this->request($this->receiptUrl, $data);
+    }
+
+    /**
+     * 火车票识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function trainTicket($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->trainTicketUrl, $data);
+    }
+
+    /**
+     * 出租车票识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function taxiReceipt($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->taxiReceiptUrl, $data);
     }
 
     /**
@@ -535,7 +651,7 @@ class AipOcr extends AipBase {
     public function form($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -554,7 +670,7 @@ class AipOcr extends AipBase {
     public function tableRecognitionAsync($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -574,12 +690,224 @@ class AipOcr extends AipBase {
     public function getTableRecognitionResult($requestId, $options=array()){
 
         $data = array();
-
+        
         $data['request_id'] = $requestId;
 
         $data = array_merge($data, $options);
 
         return $this->request($this->tableResultGetUrl, $data);
+    }
+
+    /**
+     * VIN码识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function vinCode($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->vinCodeUrl, $data);
+    }
+
+    /**
+     * 定额发票识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function quotaInvoice($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->quotaInvoiceUrl, $data);
+    }
+
+    /**
+     * 户口本识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function householdRegister($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->householdRegisterUrl, $data);
+    }
+
+    /**
+     * 港澳通行证识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function HKMacauExitentrypermit($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->HKMacauExitentrypermitUrl, $data);
+    }
+
+    /**
+     * 台湾通行证识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function taiwanExitentrypermit($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->taiwanExitentrypermitUrl, $data);
+    }
+
+    /**
+     * 出生医学证明识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function birthCertificate($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->birthCertificateUrl, $data);
+    }
+
+    /**
+     * 机动车销售发票识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function vehicleInvoice($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->vehicleInvoiceUrl, $data);
+    }
+
+    /**
+     * 车辆合格证识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function vehicleCertificate($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->vehicleCertificateUrl, $data);
+    }
+
+    /**
+     * 税务局通用机打发票识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     *   location 是否输出位置信息，true：输出位置信息，false：不输出位置信息，默认false
+     * @return array
+     */
+    public function invoice($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->invoiceUrl, $data);
+    }
+
+    /**
+     * 行程单识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     *   location 是否输出位置信息，true：输出位置信息，false：不输出位置信息，默认false
+     * @return array
+     */
+    public function airTicket($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->airTicketUrl, $data);
+    }
+
+    /**
+     * 保单识别接口
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     *   rkv_business 是否进行商业逻辑处理，rue：进行商业逻辑处理，false：不进行商业逻辑处理，默认true
+     * @return array
+     */
+    public function insuranceDocuments($image, $options=array()){
+
+        $data = array();
+        
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->insuranceDocumentsUrl, $data);
     }
 
     /**
@@ -593,7 +921,7 @@ class AipOcr extends AipBase {
     public function vatInvoice($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -612,7 +940,7 @@ class AipOcr extends AipBase {
     public function qrcode($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -633,7 +961,7 @@ class AipOcr extends AipBase {
     public function numbers($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -653,7 +981,7 @@ class AipOcr extends AipBase {
     public function lottery($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -672,7 +1000,7 @@ class AipOcr extends AipBase {
     public function passport($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -691,7 +1019,7 @@ class AipOcr extends AipBase {
     public function businessCard($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -711,7 +1039,7 @@ class AipOcr extends AipBase {
     public function handwriting($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
 
         $data = array_merge($data, $options);
@@ -723,17 +1051,17 @@ class AipOcr extends AipBase {
      * 自定义模板文字识别接口
      *
      * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
-     * @param string $templateSign - 您在自定义文字识别平台制作的模板的ID
      * @param array $options - 可选参数对象，key: value都为string类型
      * @description options列表:
+     *   templateSign 您在自定义文字识别平台制作的模板的ID
+     *   classifierId 分类器Id。这个参数和templateSign至少存在一个，优先使用templateSign。存在templateSign时，表示使用指定模板；如果没有templateSign而有classifierId，表示使用分类器去判断使用哪个模板
      * @return array
      */
-    public function custom($image, $templateSign, $options=array()){
+    public function custom($image, $options=array()){
 
         $data = array();
-
+        
         $data['image'] = base64_encode($image);
-        $data['templateSign'] = $templateSign;
 
         $data = array_merge($data, $options);
 
@@ -756,7 +1084,7 @@ class AipOcr extends AipBase {
         for($i=0; $i<$count; $i++){
             $result = $this->getTableRecognitionResult($requestId, $options);
             // 完成
-            if($result['result']['ret_code'] == 3){
+            if($result['result']['ret_code'] == 3){ 
                 break;
             }
             sleep(1);
@@ -765,3 +1093,4 @@ class AipOcr extends AipBase {
     }
 
 }
+
