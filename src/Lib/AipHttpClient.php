@@ -32,7 +32,7 @@ class AipHttpClient{
      */
     public function setSocketTimeoutInMillis($ms){
         $this->socketTimeout = $ms;
-    }    
+    }
 
     /**
      * 配置
@@ -50,7 +50,7 @@ class AipHttpClient{
         foreach($this->conf as $key => $value){
             curl_setopt($ch, $key, $value);
         }
-    }    
+    }
 
     /**
      * @param  string $url
@@ -78,7 +78,7 @@ class AipHttpClient{
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if($code === 0){
-            throw new Exception(curl_error($ch));
+            throw new \Exception(curl_error($ch));
         }
 
         curl_close($ch);
@@ -102,7 +102,7 @@ class AipHttpClient{
         $chs = array();
         $result = array();
         $mh = curl_multi_init();
-        foreach($datas as $data){        
+        foreach($datas as $data){
             $ch = curl_init();
             $chs[] = $ch;
             $this->prepare($ch);
@@ -124,7 +124,7 @@ class AipHttpClient{
             usleep(100);
         }while($running);
 
-        foreach($chs as $ch){        
+        foreach($chs as $ch){
             $content = curl_multi_getcontent($ch);
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             $result[] = array(
@@ -134,7 +134,7 @@ class AipHttpClient{
             curl_multi_remove_handle($mh, $ch);
         }
         curl_multi_close($mh);
-        
+
         return $result;
     }
 
@@ -161,9 +161,9 @@ class AipHttpClient{
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if($code === 0){
-            throw new Exception(curl_error($ch));
+            throw new \Exception(curl_error($ch));
         }
-        
+
         curl_close($ch);
         return array(
             'code' => $code,
@@ -185,7 +185,7 @@ class AipHttpClient{
     }
 
     /**
-     * 
+     *
      * @param  string $url
      * @param  array $params 参数
      * @return string

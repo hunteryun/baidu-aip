@@ -143,7 +143,7 @@ class AipBase {
             if(empty($obj) || !isset($obj['error_code'])){
                 $this->writeAuthObj($authObj);
             }
-        }catch(Exception $e){
+        }catch(\Exception $e){
             return array(
                 'error_code' => 'SDK108',
                 'error_msg' => 'connection or read data timeout',
@@ -196,7 +196,7 @@ class AipBase {
                 $objs[] = $this->proccessResult($response['content']);
             }
 
-        }catch(Exception $e){
+        }catch(\Exception $e){
             return array(
                 'error_code' => 'SDK108',
                 'error_msg' => 'connection or read data timeout',
