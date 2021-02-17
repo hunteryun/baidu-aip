@@ -101,7 +101,33 @@ class AipImageClassify extends AipBase {
      */
     private $currencyUrl = 'https://aip.baidubce.com/rest/2.0/image-classify/v1/currency';
 
-    
+    /**
+     * 菜品识别-添加
+     * @var string
+     */
+    private $customDishAddUrl = "https://aip.baidubce.com/rest/2.0/image-classify/v1/realtime_search/dish/add";
+    /**
+     * 菜品识别-搜索
+     * @var string
+     */
+    private $customDishSearchUrl = "https://aip.baidubce.com/rest/2.0/image-classify/v1/realtime_search/dish/search";
+    /**
+     * 菜品识别-删除
+     * @var string
+     */
+    private $customDishDeleteUrl = "https://aip.baidubce.com/rest/2.0/image-classify/v1/realtime_search/dish/delete";
+    /**
+     * 多目标识别
+     * @var string
+     */
+    private $multiObjectDetectUrl = "https://aip.baidubce.com/rest/2.0/image-classify/v1/multi_object_detect";
+    /**
+     * 组合接口
+     * @var string
+     */
+    private $combinationUrl = "https://aip.baidubce.com/api/v1/solution/direct/imagerecognition/combination";
+
+
 
     /**
      * 通用物体识别接口
@@ -443,4 +469,153 @@ class AipImageClassify extends AipBase {
 
         return $this->request($this->currencyUrl, $data);
     }
+
+    /**
+     * 自定义菜品识别—入库
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function customDishesAddImage($image, $brief, $options=array()){
+
+        $data = array();
+
+        $data['image'] = base64_encode($image);
+
+        $data['brief'] = $brief;
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->customDishAddUrl, $data);
+    }
+
+
+    /**
+     * 自定义菜品识别—检索
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function customDishesSearch($image, $options=array()){
+
+        $data = array();
+
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->customDishSearchUrl, $data);
+    }
+
+    /**
+     * 自定义菜品识别—删除
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function customDishesDeleteImage($image, $options=array()){
+
+        $data = array();
+
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->customDishDeleteUrl, $data);
+    }
+
+
+
+    /**
+     * 自定义菜品识别—删除
+     *
+     * @param string $image - 图像数据签名
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function customDishesDeleteContSign($contSign, $options=array()){
+
+        $data = array();
+
+        $data['cont_sign'] = $contSign;
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->customDishDeleteUrl, $data);
+    }
+
+
+
+    /**
+     * 图像多主体检测
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function multiObjectDetect($image, $options=array()){
+
+        $data = array();
+
+        $data['image'] = base64_encode($image);
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->multiObjectDetectUrl, $data);
+    }
+
+
+
+    /**
+     * 组合接口-image
+     *
+     * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function combinationByImage($image, $scenes, $options=array()){
+
+        $data = array();
+
+        $data['image'] = base64_encode($image);
+        $data['scenes'] = $scenes;
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->combinationUrl, json_encode($data), array('Content-Type' => 'application/json;charset=utf-8'));
+    }
+
+
+
+    /**
+     * 组合接口-imageUrl
+     *
+     * @param string $imageURl - 图像数据url
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     * @return array
+     */
+    public function combinationByImageUrl($imageUrl, $scenes, $options=array()){
+
+        $data = array();
+
+        $data['imgUrl'] = $imageUrl;
+        $data['scenes'] = $scenes;
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->combinationUrl, json_encode($data), array('Content-Type' => 'application/json;charset=utf-8'));
+    }
+
+
+
 }

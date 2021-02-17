@@ -51,7 +51,7 @@ class AipBodyAnalysis extends AipBase {
      * 手部关键点识别 hand_analysis api url
      * @var string
      */
-    private $handAnalysisUrl = 'https://aip.baidubce.com/rest/2.0/image-classify/v1/driver_behavior';
+    private $handAnalysisUrl = 'https://aip.baidubce.com/rest/2.0/image-classify/v1/hand_analysis';
 
     
 
